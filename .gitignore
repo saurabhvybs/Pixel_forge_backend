@@ -1,0 +1,38 @@
+node_modules
+prisma/generated/
+generated
+# Keep environment variables out of version control
+.env
+# Ignore log files
+*.log
+
+# Ignore build artifacts
+build/
+dist/
+
+# Ignore dependency lock files
+yarn.lock
+package-lock.json
+
+# Ignore IDE and editor specific files
+.vscode/
+.idea/
+*.iml
+
+# Ignore compiled binaries
+*.exe
+*.dll
+*.so
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.DS_Store
+
+# Ignore backup files
+*.bak
+*.backup
+
+# Ignore sensitive or personal files
+secrets.txt
+credentials.json
