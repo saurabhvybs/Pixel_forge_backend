@@ -12,7 +12,7 @@ dist/
 
 # Ignore dependency lock files
 yarn.lock
-package-lock.json
+
 
 # Ignore IDE and editor specific files
 .vscode/
