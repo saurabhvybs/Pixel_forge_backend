@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import prisma from '../lib/prisma';
+import { PrismaClient } from '@prisma/client';
 
 interface RequestWithUserId extends Request {
   userId?: string;
@@ -15,6 +16,8 @@ interface CreateTaskData {
   title: string;
   description?: string | null;
 }
+
+const prismaClient = new PrismaClient();
 
 /**
  * Get all tasks for the authenticated user
@@ -96,3 +99,21 @@ export async function deleteTask(req: Request, res: Response) {
     return res.status(500).json({ message: 'Failed to delete task' });
   }
 }
+
+export const getTask = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const task = await prismaClient.task.findUnique({
+      where: { id },
+    });
+
+    if (!task) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    res.json(task);
+  } catch (error) {
+    console.error('Get task error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
